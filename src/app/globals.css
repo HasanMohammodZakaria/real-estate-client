@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+
+  --radius-DEFAULT: var(--radius);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #FAFAF9;
+  --foreground: #1A1A1A;
+
+  --primary: #1B3A5C;
+  --primary-foreground: #FFFFFF;
+
+  --accent: #C9A24B;
+  --accent-foreground: #1A1A1A;
+
+  --secondary: #E8ECEF;
+  --secondary-foreground: #1B3A5C;
+
+  --muted: #F1F1EF;
+  --muted-foreground: #6B7280;
+
+  --border: #E2E2E0;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+
+  --destructive: #DC2626;
+  --success: #16A34A;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #0F1720;
+  --foreground: #EDEDED;
+
+  --primary: #3B6EA5;
+  --primary-foreground: #FFFFFF;
+
+  --accent: #D4B463;
+  --accent-foreground: #0F1720;
+
+  --secondary: #1C2B3A;
+  --secondary-foreground: #EDEDED;
+
+  --muted: #1A2530;
+  --muted-foreground: #9CA3AF;
+
+  --border: #263442;
+  --card: #16212B;
+  --card-foreground: #EDEDED;
+
+  --destructive: #EF4444;
+  --success: #22C55E;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
