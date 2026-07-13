@@ -40,7 +40,7 @@ const RegisterPage = () => {
 
     if (data) {
       toast.success("Account created successfully!");
-      router.push("/dashboard");
+      router.push("/login");
       router.refresh();
     }
 

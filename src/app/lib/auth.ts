@@ -14,7 +14,8 @@ export const auth = betterAuth({
     client,
   }),
    emailAndPassword: { 
-    enabled: true, 
+    enabled: true,
+    autoSignIn: false, 
   },
   user: {
     additionalFields: {
