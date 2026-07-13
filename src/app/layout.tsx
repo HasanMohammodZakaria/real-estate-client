@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { Navbar } from "../components/shared/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({
   variable: "--font-body",
@@ -36,6 +39,16 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <Navbar/>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            pauseOnHover
+            theme="dark"
+          />
             {children}
         </ThemeProvider>
         </body>
