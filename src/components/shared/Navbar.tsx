@@ -23,7 +23,7 @@ export function Navbar() {
 
   const user = session?.user;
 
-  // লগইন থাকলে Dashboard যোগ হবে nav links-এ (৫ম route)
+
   const navLinks = user
     ? [...baseNavLinks, { name: "Dashboard", href: "/dashboard" }]
     : baseNavLinks;

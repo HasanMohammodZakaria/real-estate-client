@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import { Navbar } from "../components/shared/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Footer } from "@/components/shared/Footer";
 
 const inter = Inter({
   variable: "--font-body",
@@ -50,6 +51,7 @@ export default function RootLayout({
             theme="dark"
           />
             {children}
+            <Footer/>
         </ThemeProvider>
         </body>
     </html>
