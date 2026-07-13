@@ -21,8 +21,14 @@ export function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const user = session?.user;
+  // Dashboard has its own sidebar/topbar shell, so the public Navbar
+  // should not render there. Keep this check AFTER all hooks above,
+  // never before (Rules of Hooks).
+  if (pathname?.startsWith("/dashboard")) {
+    return null;
+  }
 
+  const user = session?.user;
 
   const navLinks = user
     ? [...baseNavLinks, { name: "Dashboard", href: "/dashboard" }]
@@ -51,25 +57,25 @@ export function Navbar() {
         </Link>
 
         {/* Nav links - center (desktop only) */}
-      <ul className="hidden lg:flex items-center gap-8">
-  {navLinks.map((link) => {
-    const active = isActive(link.href);
-    return (
-      <li key={link.href}>
-        <Link
-          href={link.href}
-          className={`text-sm font-body ${
-            active
-              ? "text-accent font-medium"
-              : "text-foreground/80 hover:text-accent"
-          }`}
-        >
-          {link.name}
-        </Link>
-      </li>
-    );
-  })}
-</ul>
+        <ul className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`text-sm font-body ${
+                    active
+                      ? "text-accent font-medium"
+                      : "text-foreground/80 hover:text-accent"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
 
         {/* Right side: theme toggle + auth (desktop) */}
         <div className="hidden lg:flex items-center gap-4">

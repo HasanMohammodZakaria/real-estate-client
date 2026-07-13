@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { IconType } from "react-icons";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from "react-icons/hi";
@@ -47,6 +50,14 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
 }
 
 export function Footer() {
+  const pathname = usePathname();
+
+  // Dashboard has its own sidebar/topbar shell, so the public Footer
+  // should not render there.
+  if (pathname?.startsWith("/dashboard")) {
+    return null;
+  }
+
   return (
     <footer className="bg-card border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8">
@@ -138,7 +149,7 @@ export function Footer() {
               <li className="flex items-center gap-3">
                 <HiOutlineMail size={18} className="shrink-0 text-accent" />
                 <a
-                  href="mailto:web@programming-hero.com"
+                  href="mailto:admin@hub.com"
                   className="text-sm text-muted-foreground hover:text-accent transition-colors"
                 >
                   admin@hub.com
