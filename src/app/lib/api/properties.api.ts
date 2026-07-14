@@ -8,6 +8,8 @@ export interface CreatePropertyPayload {
   fullDescription: string;
   category: string;
   price: number;
+  location: string;
+  priority: string;
   imageUrl?: string;
 }
 
@@ -54,4 +56,22 @@ export async function deleteProperty(
   const data = await res.json();
   if (!res.ok) throw new Error(data.message || 'Failed to delete property');
   return data;
+}
+export async function updateProperty(
+  id: string,
+  payload: CreatePropertyPayload,
+  token: string
+) {
+  const res = await fetch(`${BASE_URL}/api/properties/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || 'Failed to update property');
+  return data as { message: string };
 }

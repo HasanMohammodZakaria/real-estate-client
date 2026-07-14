@@ -19,19 +19,17 @@ interface NavItem {
   icon: IconType;
 }
 
-// Per the requirement doc: users get their own listing tools,
-// admins additionally get user management.
 const userNav: NavItem[] = [
   { name: "Overview", href: "/dashboard", icon: HiOutlineViewGrid },
-  { name: "My Properties", href: "/items/manage", icon: HiOutlineOfficeBuilding },
-  { name: "Add Property", href: "/items/add", icon: HiOutlinePlusCircle },
+  { name: "My Properties", href: "/dashboard/properties/manage", icon: HiOutlineOfficeBuilding },
+  { name: "Add Property", href: "/dashboard/properties/add", icon: HiOutlinePlusCircle },
 ];
 
 const adminNav: NavItem[] = [
   { name: "Overview", href: "/dashboard", icon: HiOutlineViewGrid },
-  { name: "All Properties", href: "/items/manage", icon: HiOutlineOfficeBuilding },
-  { name: "Add Property", href: "/items/add", icon: HiOutlinePlusCircle },
-  { name: "Manage Users", href: "/dashboard/users", icon: HiOutlineUsers },
+  { name: "All Properties", href: "/dashboard/manage-properties", icon: HiOutlineOfficeBuilding },
+  { name: "Add Property", href: "/dashboard/properties/add", icon: HiOutlinePlusCircle },
+  { name: "Manage Users", href: "/dashboard/manage-users", icon: HiOutlineUsers },
 ];
 
 interface DashboardSidebarProps {
@@ -101,12 +99,10 @@ export function DashboardSidebar({ role, isOpen, onClose }: DashboardSidebarProp
 
   return (
     <>
-      {/* Desktop: fixed sidebar below the topbar */}
       <aside className="hidden lg:block fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] border-r border-border bg-card">
         {content}
       </aside>
 
-      {/* Mobile: off-canvas drawer */}
       <div
         className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"

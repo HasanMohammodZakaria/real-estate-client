@@ -7,8 +7,8 @@ import { NextResponse, type NextRequest } from 'next/server'
  * - PROTECTED_ROUTES: login required (any role)
  * - ADMIN_ROUTES: login + role === "admin" required
  */
-const PROTECTED_ROUTES = ['/dashboard', '/properties/add', '/properties/manage']
-const ADMIN_ROUTES = ['/dashboard/users', '/dashboard/admin-stats']
+const PROTECTED_ROUTES = ['/dashboard']
+const ADMIN_ROUTES = ['/dashboard/manage-users', '/dashboard/manage-properties']
 
 const LOGIN_PATH = '/login'
 
