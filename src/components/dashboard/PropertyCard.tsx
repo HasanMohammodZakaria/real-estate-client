@@ -9,7 +9,9 @@ import {
   HiOutlinePencil,
   HiOutlineTrash,
   HiOutlineOfficeBuilding,
+  HiOutlineHome,
 } from "react-icons/hi";
+import { LuBed, LuBath, LuRuler } from "react-icons/lu";
 import { Button } from "@heroui/react";
 import { authClient } from "@/app/lib/auth-client";
 import { deleteProperty } from "@/app/lib/api/properties.api";
@@ -22,6 +24,9 @@ export interface Property {
   price: number;
   location: string;
   priority: "low" | "medium" | "high";
+  beds: number;
+  baths: number;
+  area: string;
   imageUrl?: string;
 }
 
@@ -77,6 +82,7 @@ export function PropertyCard({ property, onDeleted }: PropertyCardProps) {
             src={property.imageUrl}
             alt={property.title}
             fill
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="object-cover"
           />
         ) : (
@@ -112,7 +118,7 @@ export function PropertyCard({ property, onDeleted }: PropertyCardProps) {
         </h3>
 
         <p
-          className="text-sm mb-2 line-clamp-2 flex-1"
+          className="text-sm mb-2 line-clamp-2"
           style={{ color: "var(--muted-foreground)" }}
         >
           {property.shortDescription}
@@ -122,8 +128,27 @@ export function PropertyCard({ property, onDeleted }: PropertyCardProps) {
           className="flex items-center gap-1 text-xs mb-3"
           style={{ color: "var(--muted-foreground)" }}
         >
-          <HiOutlineLocationMarker size={14} />
-          {property.location}
+          <HiOutlineLocationMarker size={14} className="shrink-0" />
+          <span className="line-clamp-1">{property.location}</span>
+        </div>
+
+        {/* Beds / Baths / Area */}
+        <div
+          className="flex items-center gap-3 text-xs mb-4 pb-4"
+          style={{ color: "var(--muted-foreground)", borderBottom: "1px solid var(--border)" }}
+        >
+          <span className="flex items-center gap-1">
+            <LuBed size={14} />
+            {property.beds} Beds
+          </span>
+          <span className="flex items-center gap-1">
+            <LuBath size={14} />
+            {property.baths} Baths
+          </span>
+          <span className="flex items-center gap-1">
+            <LuRuler size={14} />
+            {property.area}
+          </span>
         </div>
 
         <p
@@ -140,7 +165,16 @@ export function PropertyCard({ property, onDeleted }: PropertyCardProps) {
         )}
 
         {/* Actions */}
-        <div className="flex items-center gap-2 mt-auto pt-2 border-t border-border">
+        <div className="flex items-center gap-2 mt-auto pt-3" style={{ borderTop: "1px solid var(--border)" }}>
+          <Link
+            href={`/properties/${property._id}`}
+            className="flex-1 flex items-center justify-center gap-1.5 text-sm py-2 rounded-(--radius) transition-colors hover:bg-secondary"
+            style={{ border: "1px solid var(--border)", color: "var(--card-foreground)" }}
+          >
+            <HiOutlineHome size={15} />
+            View
+          </Link>
+
           <Link
             href={`/dashboard/properties/edit/${property._id}`}
             className="flex-1 flex items-center justify-center gap-1.5 text-sm py-2 rounded-(--radius) transition-colors hover:bg-secondary"

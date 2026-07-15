@@ -14,14 +14,7 @@ import {
   ListBox,
   Button,
 } from "@heroui/react";
-import {
-  // HiOutlineHome,
-  // HiOutlineLocationMarker,
-  // HiOutlineCurrencyDollar,
-  // HiOutlinePhotograph,
-  HiOutlineFlag,
-  HiOutlineOfficeBuilding,
-} from "react-icons/hi";
+import { HiOutlineFlag, HiOutlineOfficeBuilding } from "react-icons/hi";
 import { authClient } from "@/app/lib/auth-client";
 import { createProperty } from "@/app/lib/api/properties.api";
 import type { Priority } from "@/app/lib/actions/properties.actions";
@@ -60,6 +53,9 @@ export function AddPropertyForm() {
       const fullDescription = String(formData.get("fullDescription") ?? "").trim();
       const price = Number(formData.get("price"));
       const location = String(formData.get("location") ?? "").trim();
+      const beds = Number(formData.get("beds"));
+      const baths = Number(formData.get("baths"));
+      const area = String(formData.get("area") ?? "").trim();
       const imageUrl = String(formData.get("imageUrl") ?? "").trim();
 
       if (
@@ -69,7 +65,10 @@ export function AddPropertyForm() {
         !category ||
         !price ||
         !location ||
-        !priority
+        !priority ||
+        beds === undefined || Number.isNaN(beds) ||
+        baths === undefined || Number.isNaN(baths) ||
+        !area
       ) {
         setError("Please fill in all required fields.");
         setIsSubmitting(false);
@@ -94,6 +93,9 @@ export function AddPropertyForm() {
           price,
           location,
           priority: priority as Priority,
+          beds,
+          baths,
+          area,
           ...(imageUrl ? { imageUrl } : {}),
         },
         token
@@ -204,6 +206,27 @@ export function AddPropertyForm() {
             <FieldError />
           </TextField>
         </div>
+
+        {/* Beds + Baths side by side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <TextField name="beds" type="number" isRequired>
+            <Label>Beds</Label>
+            <Input placeholder="e.g. 3" min={0} />
+            <FieldError />
+          </TextField>
+
+          <TextField name="baths" type="number" isRequired>
+            <Label>Baths</Label>
+            <Input placeholder="e.g. 2" min={0} />
+            <FieldError />
+          </TextField>
+        </div>
+
+        <TextField name="area" isRequired>
+          <Label>Area</Label>
+          <Input placeholder="e.g. 1450 sqft" />
+          <FieldError />
+        </TextField>
 
         <TextField name="imageUrl">
           <Label>Image URL</Label>

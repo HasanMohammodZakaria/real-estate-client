@@ -25,7 +25,28 @@ export async function requireAdminSession() {
   return session;
 }
 
-export async function getServerToken() {
-  const session = await getServerSession();
-  return session?.session?.token ?? null;
+/**
+ * Server component-এ আসল JWT (jwt() plugin-এর token, session token না) বের করার জন্য।
+ * Client-এর authClient.token() এর server-side equivalent — cookie forward করে
+ * /api/auth/token endpoint hit করে প্রকৃত signed JWT আনে।
+ */
+export async function getServerToken(): Promise<string | null> {
+  try {
+    const incomingHeaders = await headers();
+    const cookie = incomingHeaders.get('cookie') ?? '';
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/token`, {
+      headers: { cookie },
+      cache: 'no-store',
+    });
+
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    console.log('Server-side token fetch result:', data);
+    return data?.token ?? null;
+  } catch (error) {
+    console.error('getServerToken failed:', error);
+    return null;
+  }
 }

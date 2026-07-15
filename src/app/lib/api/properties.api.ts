@@ -10,6 +10,9 @@ export interface CreatePropertyPayload {
   price: number;
   location: string;
   priority: string;
+  beds: number;
+  baths: number;
+  area: string;
   imageUrl?: string;
 }
 
@@ -57,11 +60,12 @@ export async function deleteProperty(
   if (!res.ok) throw new Error(data.message || 'Failed to delete property');
   return data;
 }
+
 export async function updateProperty(
   id: string,
   payload: CreatePropertyPayload,
   token: string
-) {
+): Promise<{ message: string }> {
   const res = await fetch(`${BASE_URL}/api/properties/${id}`, {
     method: 'PATCH',
     headers: {
@@ -73,5 +77,5 @@ export async function updateProperty(
 
   const data = await res.json();
   if (!res.ok) throw new Error(data.message || 'Failed to update property');
-  return data as { message: string };
+  return data;
 }

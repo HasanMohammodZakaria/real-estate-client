@@ -14,12 +14,7 @@ import {
   ListBox,
   Button,
 } from "@heroui/react";
-import {
-  // HiOutlineHome,
-  // HiOutlineLocationMarker,
-  HiOutlineFlag,
-  HiOutlineOfficeBuilding,
-} from "react-icons/hi";
+import { HiOutlineFlag, HiOutlineOfficeBuilding } from "react-icons/hi";
 import { authClient } from "@/app/lib/auth-client";
 import { updateProperty } from "@/app/lib/api/properties.api";
 import type { Priority } from "@/app/lib/actions/properties.actions";
@@ -47,6 +42,9 @@ interface PropertyData {
   price: number;
   location: string;
   priority: Priority;
+  beds: number;
+  baths: number;
+  area: string;
   imageUrl?: string;
 }
 
@@ -74,6 +72,9 @@ export function EditPropertyForm({ property }: EditPropertyFormProps) {
       const fullDescription = String(formData.get("fullDescription") ?? "").trim();
       const price = Number(formData.get("price"));
       const location = String(formData.get("location") ?? "").trim();
+      const beds = Number(formData.get("beds"));
+      const baths = Number(formData.get("baths"));
+      const area = String(formData.get("area") ?? "").trim();
       const imageUrl = String(formData.get("imageUrl") ?? "").trim();
 
       if (
@@ -83,7 +84,10 @@ export function EditPropertyForm({ property }: EditPropertyFormProps) {
         !category ||
         !price ||
         !location ||
-        !priority
+        !priority ||
+        beds === undefined || Number.isNaN(beds) ||
+        baths === undefined || Number.isNaN(baths) ||
+        !area
       ) {
         setError("Please fill in all required fields.");
         setIsSubmitting(false);
@@ -109,6 +113,9 @@ export function EditPropertyForm({ property }: EditPropertyFormProps) {
           price,
           location,
           priority: priority as Priority,
+          beds,
+          baths,
+          area,
           ...(imageUrl ? { imageUrl } : {}),
         },
         token
@@ -217,6 +224,27 @@ export function EditPropertyForm({ property }: EditPropertyFormProps) {
             <FieldError />
           </TextField>
         </div>
+
+        {/* Beds + Baths side by side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <TextField name="beds" type="number" isRequired defaultValue={String(property.beds)}>
+            <Label>Beds</Label>
+            <Input placeholder="e.g. 3" min={0} />
+            <FieldError />
+          </TextField>
+
+          <TextField name="baths" type="number" isRequired defaultValue={String(property.baths)}>
+            <Label>Baths</Label>
+            <Input placeholder="e.g. 2" min={0} />
+            <FieldError />
+          </TextField>
+        </div>
+
+        <TextField name="area" isRequired defaultValue={property.area}>
+          <Label>Area</Label>
+          <Input placeholder="e.g. 1450 sqft" />
+          <FieldError />
+        </TextField>
 
         <TextField name="imageUrl" defaultValue={property.imageUrl ?? ""}>
           <Label>Image URL</Label>

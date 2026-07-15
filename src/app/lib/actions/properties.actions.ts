@@ -8,7 +8,10 @@ export interface Property {
   category: string;
   price: number;
   location: string;
-  priority: Priority;
+  priority: string;
+  beds: number;
+  baths: number;
+  area: string;
   imageUrl?: string;
   createdBy: string;
   createdAt: string;
