@@ -1,7 +1,11 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPropertyById } from "@/app/lib/actions/properties.actions";
+import { getReviewsByProperty } from "@/app/lib/actions/reviews.actions";
+import { ReviewForm } from "@/components/properties/ReviewsForm";
+import { ReviewList } from "@/components/properties/ReviewsList";
 import {
   HiOutlineLocationMarker,
   HiOutlineArrowLeft,
@@ -23,6 +27,8 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
   if (!property) {
     notFound();
   }
+
+  const reviews = await getReviewsByProperty(id);
 
   const isLand = property.category === "land";
 
@@ -100,7 +106,10 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                 Beds
               </p>
             </div>
-            <div className="text-center" style={{ borderLeft: "1px solid var(--border)", borderRight: "1px solid var(--border)" }}>
+            <div
+              className="text-center"
+              style={{ borderLeft: "1px solid var(--border)", borderRight: "1px solid var(--border)" }}
+            >
               <PiBathtubFill size={22} className="mx-auto mb-1" style={{ color: "var(--accent)" }} />
               <p className="font-medium" style={{ color: "var(--card-foreground)" }}>
                 {property.baths}
@@ -137,6 +146,22 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
           {property.fullDescription}
         </p>
       </div>
+
+      {/* Reviews & Ratings */}
+      <section className="mt-10">
+        <h2
+          className="font-heading text-xl font-medium mb-4"
+          style={{ color: "var(--foreground)" }}
+        >
+          Reviews & Ratings
+        </h2>
+
+        <div className="mb-6">
+          <ReviewForm propertyId={id} />
+        </div>
+
+        <ReviewList reviews={reviews} />
+      </section>
     </div>
   );
 }
