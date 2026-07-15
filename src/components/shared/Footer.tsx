@@ -32,10 +32,10 @@ const companyLinks: NavItem[] = [
 ];
 
 const socialLinks: SocialItem[] = [
-  { icon: FaFacebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: FaTwitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: FaFacebook, href: "https://www.facebook.com/hasan.m.zakaria.1", label: "Facebook" },
+  { icon: FaTwitter, href: "https://x.com/Zakariak4Khan", label: "Twitter" },
+  { icon: FaInstagram, href: "https://www.instagram.com/zakariak4/", label: "Instagram" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/in/hasanmdzakaria", label: "LinkedIn" },
 ];
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
