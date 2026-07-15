@@ -20,8 +20,8 @@ interface SocialItem {
 const exploreLinks: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "Properties", href: "/properties" },
-  { name: "Add Property", href: "/items/add" },
-  { name: "Manage Listings", href: "/items/manage" },
+  { name: "Add Property", href: "/dashboard/properties/add" },
+  { name: "Manage Property", href: "/dashboard/properties/manage" },
 ];
 
 const companyLinks: NavItem[] = [
