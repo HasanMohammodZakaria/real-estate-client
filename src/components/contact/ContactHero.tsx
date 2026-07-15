@@ -155,7 +155,7 @@ export default function ContactHero() {
               className="absolute -bottom-6 right-5 rounded-(--radius) border border-border bg-card px-6 py-5 shadow-sm"
             >
               <h3 className="text-2xl font-bold text-primary">
-                &lt; 24h
+                 24h
               </h3>
 
               <p className="mt-1 text-sm text-muted-foreground">
