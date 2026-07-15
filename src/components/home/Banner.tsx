@@ -12,7 +12,7 @@ const slides = [
   "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80",
 ];
 
-const rotatingWords = ["Apartment", "Villa", "Office"];
+const rotatingWords = ["House", "Villa", "Office"];
 
 export default function Banner() {
   const [slide, setSlide] = useState(0);
@@ -108,14 +108,14 @@ export default function Banner() {
         >
           <Link
             href="/explore"
-            className="group flex items-center gap-2 rounded-DEFAULT bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="group flex items-center gap-2 rounded-DEFAULT bg-primary px-5 py-2.5 text-[12px] font-medium text-primary-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
           >
             Browse Properties
             <HiOutlineArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/dashboard/properties/add"
-            className="rounded-DEFAULT border border-border bg-card px-5 py-2.5 text-sm font-medium text-card-foreground transition-colors hover:border-accent"
+            className="rounded-DEFAULT border border-border bg-card px-5 py-2.5 text-[12px] font-medium text-card-foreground transition-colors hover:border-accent"
           >
             List Your Property
           </Link>
