@@ -5,6 +5,7 @@ A production-ready, full-stack real estate platform built with **TypeScript** en
 <p>
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js%2015-000000?style=for-the-badge&logo=next.js&logoColor=white" />
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js"/>
   <img alt="Express" src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
   <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
   <img alt="TailwindCSS" src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
@@ -18,13 +19,9 @@ A production-ready, full-stack real estate platform built with **TypeScript** en
 - [Features](#-features)
 - [Tech Stack](#️-tech-stack)
 - [Project Architecture](#-project-architecture)
-- [Getting Started](#-getting-started)
-- [Environment Variables](#-environment-variables)
 - [API Reference](#-api-reference)
-- [Demo Credentials](#-demo-credentials)
 - [Folder Structure](#-folder-structure)
-- [Roadmap](#-roadmap)
-- [License](#-license)
+
 
 ---
 
@@ -112,76 +109,6 @@ The Express backend verifies incoming requests using **JWKS** (JSON Web Key Set)
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- A MongoDB connection string (local or Atlas)
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/<your-username>/estatehub.git
-cd estatehub
-```
-
-### 2. Install dependencies
-
-```bash
-# Client
-cd real-estate-client
-npm install
-
-# Server
-cd ../real-estate-server
-npm install
-```
-
-### 3. Set up environment variables
-
-See [Environment Variables](#-environment-variables) below, then create `.env` (server) and `.env.local` (client) files accordingly.
-
-### 4. Run the development servers
-
-```bash
-# Terminal 1 — Server
-cd real-estate-server
-npm run dev
-
-# Terminal 2 — Client
-cd real-estate-client
-npm run dev
-```
-
-The client runs on `http://localhost:3000` and the server on `http://localhost:5000` by default.
-
----
-
-## 🔑 Environment Variables
-
-### `real-estate-server/.env`
-
-```env
-PORT=5000
-MONGO_DB_URI=your_mongodb_connection_string
-DATA_BASE_NAME=estatehub
-CLIENT_URL=http://localhost:3000
-```
-
-### `real-estate-client/.env.local`
-
-```env
-NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
-BETTER_AUTH_URL=http://localhost:3000
-MONGO_DB_URI=your_mongodb_connection_string
-DATA_BASE_NAME=estatehub
-```
-
-> ⚠️ Never commit `.env` files. Both are already excluded via `.gitignore`.
-
----
-
 ## 📡 API Reference
 
 Base URL: `http://localhost:5000/api`
@@ -217,15 +144,6 @@ Base URL: `http://localhost:5000/api`
 
 ---
 
-## 🔑 Demo Credentials
-
-| Role | Email | Password |
-|---|---|---|
-| User | `user@estatehub.demo` | `Demo@1234` |
-| Admin | `admin@estatehub.demo` | `Demo@1234` |
-
----
-
 ## 📂 Folder Structure
 
 ```
@@ -247,21 +165,6 @@ estatehub/
         ├── controllers/         # Business logic
         └── types/               # Shared TypeScript types
 ```
-
----
-
-## 🗺️ Roadmap
-
-- [ ] Property image uploads (currently URL-based)
-- [ ] Saved/favorited listings
-- [ ] Email notifications for new listings matching saved search criteria
-- [ ] In-app messaging between buyers and listing owners
-
----
-
-## 📄 License
-
-This project was built as part of an academic assignment and is available for educational reference.
 
 ---
 
