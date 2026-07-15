@@ -17,3 +17,11 @@ export async function getReviewsByProperty(propertyId: string): Promise<Review[]
   if (!res.ok) throw new Error('Failed to fetch reviews');
   return res.json();
 }
+
+export async function getRecentReviews(): Promise<Review[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/reviews/recent`, {
+    cache: 'no-store',
+  });
+  if (!res.ok) return [];
+  return res.json();
+}

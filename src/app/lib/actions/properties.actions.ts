@@ -17,6 +17,12 @@ export interface Property {
   createdAt: string;
 }
 
+export interface PropertyStats {
+  totalProperties: number;
+  totalCategories: number;
+  totalLocations: number;
+}
+
 interface GetPropertiesParams {
   search?: string;
   category?: string;
@@ -83,5 +89,13 @@ export async function getPropertyById(id: string): Promise<Property | null> {
   if (res.status === 404) return null;
   if (!res.ok) throw new Error('Failed to fetch property');
 
+  return res.json();
+}
+
+export async function getPropertyStats(): Promise<PropertyStats> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/properties/stats`, {
+    cache: 'no-store',
+  });
+  if (!res.ok) return { totalProperties: 0, totalCategories: 0, totalLocations: 0 };
   return res.json();
 }
