@@ -33,6 +33,7 @@ export interface Property {
 interface PropertyCardProps {
   property: Property;
   onDeleted: (id: string) => void;
+  readOnly?: boolean;
 }
 
 const PRIORITY_STYLES: Record<Property["priority"], { bg: string; text: string }> = {
@@ -41,7 +42,7 @@ const PRIORITY_STYLES: Record<Property["priority"], { bg: string; text: string }
   low: { bg: "var(--secondary)", text: "var(--secondary-foreground)" },
 };
 
-export function PropertyCard({ property, onDeleted }: PropertyCardProps) {
+export function PropertyCard({ property, onDeleted, readOnly = false }: PropertyCardProps) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -174,6 +175,8 @@ export function PropertyCard({ property, onDeleted }: PropertyCardProps) {
             <HiOutlineHome size={15} />
             View
           </Link>
+          {!readOnly && (
+            <>
 
           <Link
             href={`/dashboard/properties/edit/${property._id}`}
@@ -216,6 +219,8 @@ export function PropertyCard({ property, onDeleted }: PropertyCardProps) {
               <HiOutlineTrash size={15} />
               Delete
             </button>
+          )}
+          </>
           )}
         </div>
       </div>

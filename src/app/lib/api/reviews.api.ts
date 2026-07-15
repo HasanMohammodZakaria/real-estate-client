@@ -41,3 +41,15 @@ export async function deleteReview(id: string, token: string) {
   if (!res.ok) throw new Error(data.message || 'Failed to delete review');
   return data as { message: string };
 }
+export async function getRecentReviews(): Promise<Review[]> {
+  const res = await fetch(`${BASE_URL}/api/reviews/recent`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch reviews');
+  }
+
+  const data = await res.json();
+  return Array.isArray(data) ? data : data.reviews ?? [];
+}
