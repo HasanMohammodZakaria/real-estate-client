@@ -31,7 +31,7 @@ export function HowItWorks() {
       </div>
 
       <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
-        {/* Connecting line — শুধু desktop-এ দেখাবে */}
+        
         <div
           className="hidden sm:block absolute top-8 left-0 right-0 h-px"
           style={{

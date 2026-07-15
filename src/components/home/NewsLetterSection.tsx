@@ -8,7 +8,7 @@ export function NewsletterSection() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Backend endpoint না থাকলে এখন শুধু UI feedback দেখাচ্ছে
+   
     setSubmitted(true);
   };
 

@@ -52,8 +52,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
 export function Footer() {
   const pathname = usePathname();
 
-  // Dashboard has its own sidebar/topbar shell, so the public Footer
-  // should not render there.
+
   if (pathname?.startsWith("/dashboard")) {
     return null;
   }

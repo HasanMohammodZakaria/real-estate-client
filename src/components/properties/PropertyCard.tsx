@@ -83,7 +83,7 @@ export function PropertyCard({ property }: { property: Property }) {
           {property.shortDescription}
         </p>
 
-        {/* Meta row — beds/baths/area, or a land icon when not applicable */}
+       
         {!isLand ? (
           <div
             className="flex items-center gap-3 text-xs pt-2 mt-1"
@@ -114,7 +114,7 @@ export function PropertyCard({ property }: { property: Property }) {
           <p className="font-heading text-lg font-medium" style={{ color: "var(--primary)" }}>
             ${property.price.toLocaleString()}
           </p>
-          {/* HeroUI v3's Button has no `as` prop — style a Next.js Link directly with buttonVariants instead */}
+         
           <Link
             href={`/properties/${property._id}`}
             className={buttonVariants({ variant: "primary", size: "sm" })}

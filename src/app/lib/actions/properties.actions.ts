@@ -26,7 +26,7 @@ export interface PropertyStats {
 interface GetPropertiesParams {
   search?: string;
   category?: string;
-  location?: string; // 🆕 filter field
+  location?: string; 
   minPrice?: string;
   maxPrice?: string;
   sortBy?: string;
@@ -61,7 +61,7 @@ export async function getProperties(
 
   if (params.search) query.set('search', params.search);
   if (params.category) query.set('category', params.category);
-  if (params.location) query.set('location', params.location); // 🆕
+  if (params.location) query.set('location', params.location); 
   if (params.minPrice) query.set('minPrice', params.minPrice);
   if (params.maxPrice) query.set('maxPrice', params.maxPrice);
   if (params.sortBy) query.set('sortBy', params.sortBy);

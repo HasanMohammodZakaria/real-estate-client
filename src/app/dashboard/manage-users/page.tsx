@@ -3,7 +3,7 @@ import { ManageUsersClient } from "@/components/dashboard/ManageUsersClient";
 
 
 export default async function ManageUsersPage() {
-  await requireAdminSession(); // admin না হলে এখানেই redirect হয়ে যাবে
+  await requireAdminSession();
 
   return (
     <div>

@@ -29,7 +29,7 @@ export default function ManagePropertiesPage() {
     setProperties((prev) => prev.filter((p) => p._id !== id));
   };
 
-  if (loading) return <p>Loading...</p>; // এখানে skeleton বসাতে পারো
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div>
