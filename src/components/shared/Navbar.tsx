@@ -173,8 +173,8 @@ export function Navbar() {
 
         {/* Slide-in panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-70 bg-card border-l border-border shadow-xl transition-transform duration-300 ${
-            isOpen ? "translate-x-0" : "translate-x-full"
+          className={`absolute top-0 right-0 h-full w-70 bg-card border-l border-border shadow-xl transition-transform duration-300 flex flex-col overflow-y-auto ${
+    isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="flex items-center justify-between h-16 px-5 border-b border-border">
