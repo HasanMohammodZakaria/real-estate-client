@@ -28,6 +28,7 @@ export function ManageUsersClient() {
 
   useEffect(() => {
     if (!authPending && token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       fetchUsers();
     }
   }, [authPending, token, fetchUsers]);

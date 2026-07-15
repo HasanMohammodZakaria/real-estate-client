@@ -8,7 +8,7 @@ export interface Property {
   category: string;
   price: number;
   location: string;
-  priority: string;
+  priority: Priority;
   beds: number;
   baths: number;
   area: string;

@@ -28,6 +28,7 @@ export function ManagePropertiesClient() {
 
   useEffect(() => {
     if (!authPending && token) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       fetchProperties();
     }
   }, [authPending, token, fetchProperties]);
