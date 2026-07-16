@@ -7,8 +7,20 @@ if(!process.env.MONGO_DB_URI) {
     throw new Error("MONGO_DB_URI is not defined in environment variables");
 }
 
-const client = new MongoClient(process.env.MONGO_DB_URI);
+declare global {
+  var _mongoClient: MongoClient | undefined;
+}
+// const client = new MongoClient(process.env.MONGO_DB_URI);
+const client = global._mongoClient ?? new MongoClient(process.env.MONGO_DB_URI);
+
+if (process.env.NODE_ENV !== "production") {
+  global._mongoClient = client;
+}
 const db = client.db(process.env.DATA_BASE_NAME);
+
+client.connect().catch((err) => {
+  console.error("MongoDB initial connection failed:", err);
+});
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
